@@ -27,7 +27,7 @@ def update_msg_info(msg, uid, deviceid, to, callid):
     obj = json.loads(msg)
     obj["contact"]["uid"] = uid
     obj["contact"]["deviceid"] = deviceid
-    obj["to"] = "sip:" + to + "@dolphin.com"
+    obj["to"] = "sip:" + to + "@hexmeet.com"
     obj["from"] = "sip:" + deviceid + "@simulatorEp.com"
     obj["callid"] = callid
     # obj["callid"] = str(uuid.uuid4())
@@ -69,7 +69,7 @@ def gen_register_req(uid, deviceid):
 async def send_msg_and_await_rsp(req_msg, websocket):
     await websocket.send(req_msg)
     response_str = await websocket.recv()
-    print(response_str)
+    print('=>' + response_str)
     if "200 OK" in response_str:
         return True
     elif "ACK" in response_str:
@@ -79,11 +79,11 @@ async def send_msg_and_await_rsp(req_msg, websocket):
 
 async def await_bye(websocket):
     bye_str = await websocket.recv()
-    print(bye_str)
+    print('=>' + bye_str)
 
     if "BYE" in bye_str:
         obj = json.loads(bye_str)
         obj['method'] = '200 OK'
         r200OK = json.dumps(obj)
-        print(r200OK)
+        print('<=' + r200OK)
         await websocket.send(r200OK)

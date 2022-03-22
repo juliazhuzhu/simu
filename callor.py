@@ -44,7 +44,7 @@ def gen_inv_200OK(uid, deviceid, fromurl, to,callid):
 
 async def await_incoming_call(websocket,uid, deviceid):
     inv_str = await websocket.recv()
-    print(inv_str)
+    print('=>' + inv_str)
     obj = json.loads(inv_str)
     ##send 200 Ok
     ##get from
@@ -58,7 +58,7 @@ async def await_incoming_call(websocket,uid, deviceid):
 
     r200Ok_msg = gen_inv_200OK(uid, deviceid, fromurl, to, callid)
     ##set from, to, callid
-    print(r200Ok_msg)
+    print('<=' + r200Ok_msg)
     await common.send_msg_and_await_rsp(r200Ok_msg, websocket)
     # await websocket.send(r200Ok_msg)
     # response_str = await websocket.recv()
