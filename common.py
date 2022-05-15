@@ -30,6 +30,7 @@ def update_msg_info(msg, uid, deviceid, to, callid):
     obj["to"] = "sip:" + to + "@hexmeet.com"
     obj["from"] = "sip:" + deviceid + "@simulatorEp.com"
     obj["callid"] = callid
+    obj["branch_id"] = str(uuid.uuid4())
     # obj["callid"] = str(uuid.uuid4())
 
     return json.dumps(obj)

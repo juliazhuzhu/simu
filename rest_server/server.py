@@ -44,7 +44,7 @@ def login():
         rep_val['userId'] = uid
         rep_val['username'] = username
         rep_val['deviceId'] = deviceId
-        rep_val['callServiceUrl'] = 'ws://127.0.0.1:9002/websocket/message?token=' + jwt_token
+        rep_val['callServiceUrl'] = 'ws://172.20.0.204:9002/websocket/message?token=' + jwt_token
     return jsonify(rep_val)
 
 
